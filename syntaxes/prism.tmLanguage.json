@@ -1,0 +1,134 @@
+{
+  "scopeName": "source.prism",
+  "fileTypes": ["prism"],
+  "patterns": [{ "include": "#main" }],
+  "repository": {
+    "brace": {
+      "patterns": [
+        {
+          "match": "([\\[\\]\\(\\)])",
+          "name": "keyword.operator.brace.prism"
+        }
+      ]
+    },
+    "logical": {
+      "patterns": [
+        {
+          "match": "([:?=!><&|])",
+          "name": "keyword.operator.logical.prism"
+        }
+      ]
+    },
+    "arithmetic": {
+      "patterns": [
+        {
+          "match": "([\\-+*])",
+          "name": "keyword.operator.arithmetic.prism"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        { "include": "#brace" },
+        { "include": "#arithmetic" },
+        { "include": "#logical" }
+      ]
+    },
+    "type": {
+      "patterns": [
+        { "match": "(\\b(int|double|bool)\\b)", "name": "support.type.prism" }
+      ]
+    },
+    "string": {
+      "patterns": [
+        {
+          "begin": "(\\\")",
+          "end": "(\\\")",
+          "beginCaptures": { "1": { "name": "markup.quote.prism" } },
+          "endCaptures": { "1": { "name": "markup.quote.prism" } },
+          "contentName": "string.prism"
+        }
+      ]
+    },
+    "numeric": {
+      "patterns": [{ "match": "(\\b\\d+)", "name": "constant.numeric.prism" }]
+    },
+    "player": {
+      "patterns": [
+        {
+          "begin": "(\\bplayer\\b)",
+          "beginCaptures": { "1": { "name": "keyword.control.prism" } },
+          "endCaptures": { "1": { "name": "keyword.control.prism" } },
+          "patterns": [
+            { "include": "#numeric" },
+            { "include": "#punctuation" },
+            {
+              "match": "((\\b\\w+\\b){1})",
+              "name": "keyword.control.prism"
+            }
+          ],
+          "end": "(\\bendplayer\\b)"
+        }
+      ]
+    },
+    "declaration": {
+      "patterns": [
+        {
+          "begin": "(\\b(const|formula)\\b)",
+          "endCaptures": { "1": { "name": "brace.prism" } },
+          "patterns": [
+            { "include": "#punctuation" },
+            { "include": "#numeric" },
+            { "include": "#type" }
+          ],
+          "end": "(;)",
+          "beginCaptures": { "1": { "name": "keyword.prism" } }
+        }
+      ]
+    },
+    "module": {
+      "patterns": [
+        {
+          "begin": "(\\bmodule\\b)",
+          "endCaptures": { "1": { "name": "keyword.control.prism" } },
+          "patterns": [
+            { "include": "#punctuation" },
+            { "include": "#numeric" }
+          ],
+          "end": "(\\bendmodule\\b)",
+          "beginCaptures": { "1": { "name": "keyword.control.prism" } }
+        }
+      ]
+    },
+    "rewards": {
+      "patterns": [
+        {
+          "begin": "(\\brewards\\b)",
+          "endCaptures": { "1": { "name": "keyword.control.prism" } },
+          "patterns": [
+            { "include": "#punctuation" },
+            { "include": "#numeric" },
+            { "include": "#string" }
+          ],
+          "end": "(\\bendrewards\\b)",
+          "beginCaptures": { "1": { "name": "keyword.control.prism" } }
+        }
+      ]
+    },
+    "main": {
+      "patterns": [
+        { "match": "(^\\/\\/.*$)", "name": "comment.prism" },
+        { "include": "#numeric" },
+        { "match": "(^csg$)", "name": "text.prism" },
+        { "include": "#punctuation" },
+        { "include": "#declaration" },
+        { "include": "#player" },
+        { "include": "#module" },
+        { "include": "#rewards" },
+        { "match": "(\\b[a-z][a-z0-9]*)", "name": "invalid.prism" }
+      ]
+    }
+  },
+  "name": "prism",
+  "uuid": ""
+}

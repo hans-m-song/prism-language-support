@@ -1,0 +1,34 @@
+{
+  "name": "prism-language-support",
+  "displayName": "prism-language-support",
+  "description": "syntax highlighting for prism",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.46.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "prism",
+        "aliases": [
+          "Prism",
+          "prism"
+        ],
+        "extensions": [
+          ".prism"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "prism",
+        "scopeName": "source.prism",
+        "path": "./syntaxes/prism.tmLanguage.json"
+      }
+    ]
+  }
+}
